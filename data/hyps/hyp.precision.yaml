@@ -1,0 +1,39 @@
+# YOLOv5 Hyperparameters for High Precision + Good Generalization
+# Carefully tuned to avoid precision loss while maintaining robustness
+
+# Learning rates
+lr0: 0.001          # initial learning rate
+lrf: 0.01           # final OneCycleLR learning rate (lr0 * lrf)
+momentum: 0.937     # SGD momentum/Adam beta1
+weight_decay: 0.0005 # optimizer weight decay 5e-4
+warmup_epochs: 3.0  # warmup epochs (fractions ok)
+warmup_momentum: 0.8 # warmup initial momentum
+warmup_bias_lr: 0.1 # warmup initial bias lr
+
+# Loss function weights (precision-focused)
+box: 0.05           # box loss gain
+cls: 1.5            # cls loss gain (boosted for precision)
+cls_pw: 1.0         # cls BCELoss positive_weight
+obj: 0.7            # obj loss gain (reduced to focus on classification)
+obj_pw: 1.0         # obj BCELoss positive_weight
+iou_t: 0.20         # IoU training threshold
+anchor_t: 4.0       # anchor-multiple threshold
+
+# Focal loss (helps with class imbalance)
+fl_gamma: 2.0       # focal loss gamma for hard example focus
+
+# BALANCED augmentation - precision-safe but robust
+hsv_h: 0.010        # small hue variations for lighting robustness
+hsv_s: 0.3          # moderate saturation for lighting conditions
+hsv_v: 0.2          # controlled brightness for different lighting
+degrees: 2.0        # small rotations for real-world deployment
+translate: 0.02     # small translations for position variance
+scale: 0.15         # controlled scaling for size variations
+shear: 0.0          # no shearing (can distort features)
+perspective: 0.0    # no perspective (can distort shapes)
+flipud: 0.0         # no vertical flip
+fliplr: 0.2         # conservative horizontal flip (only 20%)
+mosaic: 0.0         # NO mosaic (disabled for precision)
+mixup: 0.0          # no mixup (can confuse features)
+copy_paste: 0.0     # no copy-paste
+close_mosaic: 0     # mosaic already disabled

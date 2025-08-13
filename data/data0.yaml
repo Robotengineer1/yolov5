@@ -1,0 +1,13 @@
+﻿train: ../train0/images
+val: ../valid0/images
+test: ../test0/images
+
+nc: 2
+names: ['Missing', 'Present']
+
+roboflow:
+  workspace: careyu-oglhr
+  project: data_right-nkndc
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/careyu-oglhr/data_right-nkndc/dataset/1
